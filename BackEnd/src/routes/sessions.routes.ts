@@ -7,12 +7,9 @@ const sessionsRouter = Router();
 sessionsRouter.post('/', async (request, response) => {
   const { email, password } = request.body;
 
-  const authenticateUser = new AuthenticateUserService();
+  const authenticate = new AuthenticateUserService();
 
-  const { user, token } = await authenticateUser.execute({
-    email,
-    password,
-  });
+  const { user, token } = await authenticate.execute({ email, password });
 
   delete user.password;
 
